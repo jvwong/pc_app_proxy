@@ -9,5 +9,6 @@ cat /etc/nginx/conf.d/default.conf
 # CMD instruction that starts nginx in the foreground, but we could define a different
 # CMD at runtime that runs different commands or starts a shell if required.
 # another comment
+# also a comment
 
 exec "$@"
