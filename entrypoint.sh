@@ -10,5 +10,6 @@ cat /etc/nginx/conf.d/default.conf
 # CMD at runtime that runs different commands or starts a shell if required.
 # another comment
 # also a comment
+# third comment
 
 exec "$@"
