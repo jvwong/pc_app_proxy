@@ -1,7 +1,5 @@
-from nginx:1.7
+from nginx:1.19
 
-COPY default.conf /etc/nginx/conf.d/default.conf
-COPY entrypoint.sh /entrypoint.sh
+COPY default.conf.template /etc/nginx/templates/default.conf.template
 
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
