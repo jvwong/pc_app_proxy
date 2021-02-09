@@ -6,14 +6,20 @@ server {
   listen ${NGINX_PORT};
   listen [::]:${NGINX_PORT};
   server_name ${NGINX_HOST};
+  root /var/www/app;
+
+  location ~* (\.(js|css)) {
+              root ${STATIC_ROOT};
+              expires 30d;
+  }
+
+  location /image/ {
+           expires 30d;
+  }
 
   location / {
-
+    root /;
     proxy_pass http://backend;
-    proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
-
-    proxy_redirect off;
-    proxy_buffering off;
 
     proxy_set_header Host ${NGINX_HOST};
     proxy_set_header X-Real-IP $remote_addr;
@@ -25,8 +31,4 @@ server {
 
   }
 
-#  location ~ (/fonts|/img|\.(js|html|txt|ico)|robots.txt) {
-#                root ${STATIC_ROOT};
-#                expires 30d;
-#  }
 }
