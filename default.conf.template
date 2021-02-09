@@ -6,19 +6,19 @@ server {
   listen ${NGINX_PORT};
   listen [::]:${NGINX_PORT};
   server_name ${NGINX_HOST};
-  root /var/www/app;
+  root /;
 
-  location ~* (\.(js|css)) {
+  location ~* \.(js|css) {
               root ${STATIC_ROOT};
               expires 30d;
   }
 
   location /image/ {
+           root ${IMAGE_ROOT};
            expires 30d;
   }
 
   location / {
-    root /;
     proxy_pass http://backend;
 
     proxy_set_header Host ${NGINX_HOST};
